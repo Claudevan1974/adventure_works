@@ -1,0 +1,170 @@
+version: 2
+
+models:
+  # --- TABELA FATO ---
+  - name: fct_sales
+    description: "Tabela de fatos de vendas na camada de marts."
+    columns:
+      - name: sales_order_detail_id
+        description: "Chave primária do item de detalhe da venda."
+        tests:
+          - unique
+          - not_null
+      - name: sales_order_id
+        description: "Identificador do cabeçalho da ordem de venda."
+        tests:
+          - not_null
+
+  # --- DIMENSÕES (CORE) ---
+  - name: dim_humanresources_department
+    description: "Dimensão de departamentos da empresa."
+    columns:
+      - name: department_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_humanresources_employee
+    description: "Dimensão de funcionários."
+    columns:
+      - name: business_entity_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_person_address
+    description: "Dimensão de endereços."
+    columns:
+      - name: address_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_person_countryregion
+    description: "Dimensão de países e regiões."
+    columns:
+      - name: country_region_code
+        tests:
+          - unique
+          
+  - name: dim_person_person
+    description: "Dimensão de cadastro de pessoas."
+    columns:
+      - name: person_id
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: "Nome completo concatenado."
+        tests:
+          - not_null
+
+  - name: dim_person_stateprovince
+    description: "Dimensão de estados e províncias."
+    columns:
+      - name: state_province_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_production_product
+    description: "Dimensão de produtos."
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_production_productcategory
+    description: "Dimensão de categorias de produtos."
+    columns:
+      - name: product_category_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_production_productinventory
+    description: "Dimensão de inventário e stock de produtos."
+
+  - name: dim_production_productsubcategory
+    description: "Dimensão de subcategorias de produtos."
+    columns:
+      - name: product_subcategory_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_purchasing_purchaseorderdetail
+    description: "Dimensão de detalhes dos pedidos de compra."
+    columns:
+      - name: purchase_order_detail_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_purchasing_purchaseorderheader
+    description: "Dimensão de cabeçalhos dos pedidos de compra."
+    columns:
+      - name: purchase_order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_purchasing_vendor
+    description: "Dimensão de fornecedores."
+    columns:
+      - name: vendor_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sales_creditcard
+    description: "Dimensão de cartões de crédito."
+    columns:
+      - name: credit_card_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sales_customer
+    description: "Dimensão de clientes."
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sales_salesorderdetail
+    description: "Dimensão de itens de detalhe dos pedidos de venda."
+    columns:
+      - name: sales_order_detail_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sales_salesorderheader
+    description: "Dimensão de cabeçalho dos pedidos de venda."
+    columns:
+      - name: sales_order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sales_salesorderheadersalesreason
+    description: "Dimensão de relacionamento entre pedidos de venda e motivos de compra."
+
+  - name: dim_sales_salesreason
+    description: "Dimensão de motivos de venda."
+    columns:
+      - name: sales_reason_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sales_salesterritory
+    description: "Dimensão de territórios de vendas."
+    columns:
+      - name: territory_id
+        tests:
+          - unique
+          - not_null
